@@ -535,6 +535,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerPrefab: {fileID: 8034733448120979474, guid: 15d4f3319eafa384b8eeeeb2d4090904, type: 3}
   towerParent: {fileID: 544291446}
+  _tileMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!4 &1540627729
 Transform:
   m_ObjectHideFlags: 0

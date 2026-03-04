@@ -5,6 +5,7 @@ public class BuildManager : MonoBehaviour
 {
     [SerializeField] private GameObject _towerPrefab;
     [SerializeField] private Transform towerParent;
+    [SerializeField] private LayerMask _tileMask;
 
     private Tile _hoveredTile;
     private Camera _camera;
@@ -24,7 +25,7 @@ public class BuildManager : MonoBehaviour
     private void HandleHover()
     {
         Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, _tileMask))
         {
             Tile tile = hit.collider.GetComponent<Tile>();
             if (tile != _hoveredTile)
