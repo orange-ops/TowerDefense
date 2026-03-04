@@ -121,3 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9738e7bd053a6e43beda8056c922355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tileType: 0
+  _hoverReadyColor: {r: 0, g: 0, b: 1, a: 1}
+  _hoverNotReadyColor: {r: 1, g: 0, b: 0, a: 1}
