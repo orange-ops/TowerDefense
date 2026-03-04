@@ -4,8 +4,22 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed = 1f;
+    [SerializeField] private int _health = 1;
+
     private Transform _pathParent;
     private int _currentWaypoint = 0;
+
+    public static readonly List<Enemy> ActiveEnemies = new();
+
+    private void OnEnable()
+    {
+        ActiveEnemies.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        ActiveEnemies.Remove(this);
+    }
 
     public void Initialize(Transform pathParent)
     {
@@ -31,5 +45,16 @@ public class Enemy : MonoBehaviour
         if ((targetPosition - transform.position).sqrMagnitude < 0.01f) {
             _currentWaypoint++;
         }
+    }
+
+    public void Damage(int damage)
+    {
+        _health -= damage;
+        if (_health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
+
     }
 }
