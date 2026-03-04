@@ -4,8 +4,14 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed = 1f;
-    [SerializeField] private Transform _pathParent;
+    private Transform _pathParent;
     private int _currentWaypoint = 0;
+
+    public void Initialize(Transform pathParent)
+    {
+        _pathParent = pathParent;
+        transform.position = pathParent.GetChild(0).position;
+    }
 
     private void Update()
     {
