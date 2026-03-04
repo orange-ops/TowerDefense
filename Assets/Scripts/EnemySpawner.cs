@@ -5,8 +5,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private Transform pathParent;
-    private Vector2 _spawnInterval = new Vector2(0.75f, 1.5f);
-    private int _enemiesPerWave = 5;
+    private Vector2 _spawnInterval;
+    private int _enemiesPerWave;
     private Coroutine _spawningCoroutine;
 
     void Start()

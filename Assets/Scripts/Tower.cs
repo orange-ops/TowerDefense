@@ -3,7 +3,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private int _damage = 1;
-    [SerializeField] private float _range = 5f;
+    [SerializeField] private float _range = 2.5f;
     [SerializeField] private float _fireRate = 0.75f;
 
     private float _timeFromLastShot = 0;
