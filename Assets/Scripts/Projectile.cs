@@ -5,12 +5,15 @@ public class Projectile : MonoBehaviour
     private float _speed;
     private int _damage;
     private Transform _target;
+    private ProjectilePool _pool;
 
-    public void Shoot(float speed, int damage, Transform target)
+    public void Shoot(float speed, int damage, Transform target, ProjectilePool pool)
     {
         _speed = speed;
         _damage = damage;
         _target = target;
+        _pool = pool;
+        gameObject.SetActive(true);
     }
 
     private void Update()
@@ -26,6 +29,10 @@ public class Projectile : MonoBehaviour
                     enemy.Damage(_damage);
                 gameObject.SetActive(false);
             }
+        }
+        else
+        {
+            _pool.ReturnProjectileToPool(this);
         }
     }
 }
