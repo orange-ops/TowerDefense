@@ -48,6 +48,7 @@ public class PlayerEconomy : MonoBehaviour
         else
         {
             _health = 0;
+            OnHealthChanged?.Invoke(_health);
             OnAllHealthLost?.Invoke(_health);
 
         }

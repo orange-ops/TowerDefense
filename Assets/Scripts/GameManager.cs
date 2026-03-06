@@ -52,10 +52,14 @@ public class GameManager : MonoBehaviour
             if (_waveCoroutine != null)
                 StopCoroutine(_waveCoroutine);
         }
+        Time.timeScale = 0;
+        _uiManager.ShowGameOver(victory);
     }
 
     public void ResetGame()
     {
+        Debug.Log("Game reset");
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

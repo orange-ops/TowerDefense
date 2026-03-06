@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private Button _playAgainButton;
 
+    private bool goldInitialized = false;
+    private bool healthInitialized = false;
+
     private void OnEnable()
     {
         _playerEconomy.OnGoldChanged += UpdateGold;
@@ -35,13 +38,19 @@ public class UIManager : MonoBehaviour
     private void UpdateGold(int gold)
     {
         _goldText.text = gold.ToString();
-        _goldText.GetComponent<Animator>().Play("ButtonScale");
+        if (goldInitialized)
+            _goldText.GetComponent<Animator>().Play("ButtonScale");
+        else
+            goldInitialized = true;
     }
 
     private void UpdateLives(int lives)
     {
         _livesText.text = lives.ToString();
-        _livesText.GetComponent<Animator>().Play("ButtonScale");
+        if (healthInitialized)
+            _livesText.GetComponent<Animator>().Play("ButtonScale");
+        else
+            healthInitialized = true;
     }
 
     public void ShowGameOver(bool win)
@@ -51,6 +60,8 @@ public class UIManager : MonoBehaviour
         else
             _gameOverText.text = "YOU LOSE";
         _gameOverScreen.SetActive(true);
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_gameOverScreen.GetComponent<RectTransform>());
     }
 
     private void PlayAgainClick()
