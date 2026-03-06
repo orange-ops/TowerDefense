@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private float _speed;
+    [SerializeField] private float _speed;
     private int _damage;
     private Transform _target;
     private ProjectilePool _pool;
 
-    public void Shoot(float speed, int damage, Transform target, ProjectilePool pool)
+    public void Shoot(int damage, Transform target, ProjectilePool pool)
     {
-        _speed = speed;
         _damage = damage;
         _target = target;
         _pool = pool;

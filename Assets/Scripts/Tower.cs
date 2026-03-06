@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour
     public int Price = 100;
 
     private float _timeFromLastShot = 0;
+    private ProjectilePool _projectilePool;
 
 
     private void Update()
@@ -37,8 +38,15 @@ public class Tower : MonoBehaviour
 
     private void Fire(Enemy enemy)
     {
-        float sqrRange = _range * _range;
-        enemy.Damage(_damage);
+        //enemy.Damage(_damage);
+        Projectile proj = _projectilePool.GetProjectile();
+        proj.transform.position = transform.position;
+        proj.Shoot(_damage, enemy.transform, _projectilePool);
+    }
+
+    public void SetProjectilePool(ProjectilePool pool)
+    {
+        _projectilePool = pool;
     }
 
 

@@ -8,6 +8,7 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private LayerMask _tileMask;
 
     [SerializeField] private PlayerEconomy _playerEconomy;
+    [SerializeField] private ProjectilePool _projectilePool;
 
     private Tile _hoveredTile;
     private Camera _camera;
@@ -55,6 +56,7 @@ public class BuildManager : MonoBehaviour
             {
                 GameObject tower = Instantiate(_towerPrefab, towerParent);
                 tower.transform.position = _hoveredTile.transform.position;
+                tower.GetComponent<Tower>().SetProjectilePool(_projectilePool);
                 _hoveredTile.SetAsOccupied();
             }
         }
