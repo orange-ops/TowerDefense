@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     private Transform _pathParent;
     private int _currentWaypoint = 0;
+    private Vector3 randomOffset;
 
     public static readonly List<Enemy> ActiveEnemies = new();
 
