@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed = 1f;
     [SerializeField] private int _health = 1;
+    public int Reward = 30;
+    public event Action<Enemy> OnDeath;
+    public event Action<Enemy> OnGoalReached;
 
     private Transform _pathParent;
     private int _currentWaypoint = 0;
@@ -52,9 +56,18 @@ public class Enemy : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
-            gameObject.SetActive(false);
+            Die();
         }
+    }
 
+    private void Die()
+    {
+        OnDeath?.Invoke(this);
+        gameObject.SetActive(false);
+    }
 
+    private void ReachGoal()
+    {
+        OnGoalReached?.Invoke(this);
     }
 }

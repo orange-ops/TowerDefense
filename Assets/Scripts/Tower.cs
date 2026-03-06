@@ -5,6 +5,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private int _damage = 1;
     [SerializeField] private float _range = 2.5f;
     [SerializeField] private float _fireRate = 0.75f;
+    public int Price = 100;
 
     private float _timeFromLastShot = 0;
 

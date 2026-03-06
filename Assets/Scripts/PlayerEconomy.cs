@@ -10,7 +10,13 @@ public class PlayerEconomy : MonoBehaviour
     public event Action<int> OnGoldChanged;
     public event Action<int> OnHealthChanged;
     public event Action<int> OnAllHealthLost;
-    
+
+    private void Start()
+    {
+        OnGoldChanged?.Invoke(_gold);
+        OnHealthChanged?.Invoke(_health);
+    }
+
     public void AddGold(int amount)
     {
         _gold += amount;

@@ -1,26 +1,35 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private EnemySpawner enemySpawner;
-    [SerializeField] private int[] enemiesPerWave;
-    [SerializeField] private Vector2 spawnInterval;
+    [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private int[] _enemiesPerWave;
+    [SerializeField] private Vector2 _spawnInterval;
+    [SerializeField] private PlayerEconomy _playerEconomy;
+    [SerializeField] private UIManager _uiManager;
 
     private int _currentWave = 0;
     private Coroutine _waveCoroutine;
+
 
     private void Start()
     {
         _waveCoroutine = StartCoroutine(WaveCoroutine());
     }
 
+    private void OnEnable()
+    {
+        _playerEconomy.OnAllHealthLost += LoseGame;
+    }
+
     private IEnumerator WaveCoroutine()
     {
-        while(_currentWave < enemiesPerWave.Length)
+        while(_currentWave < _enemiesPerWave.Length)
         {
             Debug.Log("Wave " + _currentWave + " started");
-            enemySpawner.StartWave(spawnInterval, enemiesPerWave[_currentWave]);
+            _enemySpawner.StartWave(_spawnInterval, _enemiesPerWave[_currentWave]);
             while (Enemy.ActiveEnemies.Count > 0)
             {
                 yield return null;
@@ -31,12 +40,22 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void GameOver(bool victory)
+    private void LoseGame(int health)
+    {
+        GameOver(false);
+    }
+
+    private void GameOver(bool victory)
     {
         if (!victory)
         {
             if (_waveCoroutine != null)
                 StopCoroutine(_waveCoroutine);
         }
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

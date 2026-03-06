@@ -7,6 +7,8 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private Transform towerParent;
     [SerializeField] private LayerMask _tileMask;
 
+    [SerializeField] private PlayerEconomy _playerEconomy;
+
     private Tile _hoveredTile;
     private Camera _camera;
 
@@ -47,11 +49,14 @@ public class BuildManager : MonoBehaviour
 
     private void TryBuild(Tile tile)
     {
-        if (_hoveredTile != null && _hoveredTile.IsBuildable())
+        if (_playerEconomy.SpendGold(_towerPrefab.GetComponent<Tower>().Price)) 
         {
-            GameObject tower = Instantiate(_towerPrefab, towerParent);
-            tower.transform.position = _hoveredTile.transform.position;
-            _hoveredTile.SetAsOccupied();
+            if (_hoveredTile != null && _hoveredTile.IsBuildable())
+            {
+                GameObject tower = Instantiate(_towerPrefab, towerParent);
+                tower.transform.position = _hoveredTile.transform.position;
+                _hoveredTile.SetAsOccupied();
+            }
         }
     }
 
