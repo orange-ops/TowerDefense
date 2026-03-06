@@ -50,9 +50,10 @@ public class BuildManager : MonoBehaviour
 
     private void TryBuild(Tile tile)
     {
-        if (_playerEconomy.SpendGold(_towerPrefab.GetComponent<Tower>().Price)) 
+
+        if (_hoveredTile != null && _hoveredTile.IsBuildable())
         {
-            if (_hoveredTile != null && _hoveredTile.IsBuildable())
+            if (_playerEconomy.SpendGold(_towerPrefab.GetComponent<Tower>().Price))
             {
                 GameObject tower = Instantiate(_towerPrefab, towerParent);
                 tower.transform.position = _hoveredTile.transform.position;
