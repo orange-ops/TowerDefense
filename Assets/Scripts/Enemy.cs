@@ -33,9 +33,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (_pathParent != null && _pathParent.childCount > _currentWaypoint)
+        if (_pathParent != null)
         {
-            MoveAlongPath();
+            if (_pathParent.childCount > _currentWaypoint)
+                MoveAlongPath();
+            else
+                ReachGoal();
+
         }
     }
 
@@ -69,5 +73,6 @@ public class Enemy : MonoBehaviour
     private void ReachGoal()
     {
         OnGoalReached?.Invoke(this);
+        gameObject.SetActive(false);
     }
 }
