@@ -9,11 +9,6 @@ public class EnemySpawner : MonoBehaviour
     private int _enemiesPerWave;
     private Coroutine _spawningCoroutine;
 
-    void Start()
-    {
-        StartWave(_spawnInterval, _enemiesPerWave);
-    }
-
     public void StartWave(Vector2 spawnInterval, int enemiesPerWave)
     {
         _spawnInterval = spawnInterval;

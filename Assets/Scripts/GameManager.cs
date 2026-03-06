@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void GameOver(bool victory)
+    public void GameOver(bool victory)
     {
         if (!victory)
         {
