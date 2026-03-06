@@ -27,6 +27,7 @@ public class Projectile : MonoBehaviour
                 if (enemy != null)
                     enemy.Damage(_damage);
                 gameObject.SetActive(false);
+                _pool.ReturnProjectileToPool(this);
             }
         }
         else

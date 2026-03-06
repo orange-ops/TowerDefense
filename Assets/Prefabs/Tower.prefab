@@ -156,6 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _range: 1.5
-  _fireRate: 1
+  _range: 2.5
+  _fireRate: 0.5
   Price: 100

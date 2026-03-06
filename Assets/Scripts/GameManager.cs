@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         while(_currentWave < _enemiesPerWave.Length)
         {
+            _uiManager.UpdateWaveText(_currentWave + 1, _enemiesPerWave.Length);
             Debug.Log("Wave " + _currentWave + " started");
             _enemySpawner.StartWave(_spawnInterval, _enemiesPerWave[_currentWave]);
             while (Enemy.ActiveEnemies.Count > 0)

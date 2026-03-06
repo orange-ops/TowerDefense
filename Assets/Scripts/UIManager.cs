@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _goldText;
     [SerializeField] private TextMeshProUGUI _livesText;
+    [SerializeField] private TextMeshProUGUI _waveCounterText;
 
     [Header("Game Over UI")]
     [SerializeField] private GameObject _gameOverScreen;
@@ -62,6 +63,12 @@ public class UIManager : MonoBehaviour
         _gameOverScreen.SetActive(true);
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(_gameOverScreen.GetComponent<RectTransform>());
+    }
+
+    public void UpdateWaveText(int curWave, int maxWave)
+    {
+        _waveCounterText.text = "WAVE " + curWave.ToString() + "/" + maxWave.ToString();
+        _waveCounterText.GetComponent<Animator>().Play("ButtonScale");
     }
 
     private void PlayAgainClick()
